@@ -8,7 +8,7 @@ let sequelize = new Sequelize(
   {
     host: process.env.DB_HOST,
     dialect: "postgres",
-    dialectModule: pg,
+    dialectModule: require('pg'),
     port: 5432,
     dialectOptions: {
       ssl: { rejectUnauthorized: false },
