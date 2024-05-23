@@ -12,6 +12,7 @@ let sequelize = new Sequelize(
     dialectOptions: {
       ssl: { rejectUnauthorized: false },
     },
+    logging: (msg) => console.log(msg)
   }
 );
 
