@@ -35,7 +35,7 @@ function ensureLogin(req, res, next) {
 }
 
 app.get("/", (req, res) => {
-  res.render("./views/home.ejs");
+  res.render("home.ejs");
 });
 
 app.get("/about", (req, res) => {
