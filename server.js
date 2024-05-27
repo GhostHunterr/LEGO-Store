@@ -190,8 +190,8 @@ app.get("*", (req, res) => {
 legoData
   .initialize()
   .then(authData.initialize)
-  .then(function () {
-    app.listen(HTTP_PORT, function () {
+  .then(() => {
+    app.listen(HTTP_PORT, () => {
       console.log(`app listening on:  ${HTTP_PORT}`);
     });
   })
