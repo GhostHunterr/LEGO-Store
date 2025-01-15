@@ -9,16 +9,14 @@ const app = express();
 const HTTP_PORT = process.env.PORT || 8080;
 
 app.set("view engine", "ejs");
-
 app.set("views", path.join(__dirname, "views"));
-
 app.use(express.static(__dirname + "/public/"));
 
 app.use(
   clientSessions({
     cookieName: "session",
-    secret: "r7FpTSOYKweQBZd34c9Vb0i6nDGLlJr",
-    duration: 2 * 60 * 1000,
+    secret: process.env.SECRET,
+    duration: 2 * 60 * 60 * 1000,
     activeDuration: 1000 * 60,
   })
 );
@@ -28,22 +26,25 @@ app.use((req, res, next) => {
   next();
 });
 
-function ensureLogin(req, res, next) {
+const ensureLogin = (req, res, next) => {
   if (!req.session.user) {
     res.redirect("/login");
   } else {
     next();
   }
-}
+};
 
+//Root
 app.get("/", (req, res) => {
   res.render("home");
 });
 
+//About
 app.get("/about", (req, res) => {
   res.render("about");
 });
 
+//Lego View
 app.get("/lego/sets", async (req, res) => {
   try {
     if (req.query.theme) {
